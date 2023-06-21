@@ -1,0 +1,54 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/phosphor-icons"></script>
+
+    <link rel="stylesheet" href="style.css">
+    <title>Calculator</title>
+    </head>
+    <body>
+    <main class="calculator-body">
+
+        <div class="calculator-display">
+        <div id="currentValue" class="calculator-display__current-number"></div>
+        <div id="resultValue" class="calculator-display__result"></div>
+        </div>
+
+        <div class="buttons">
+            <button class="reset-number" onclick="display.deleteAll()">CE</button>
+            <button class="charDelete" onclick="display.delete()">DEL</button>
+            <button class="operators operators-css" value="percentage">%</button>
+            <button class="operators operators-css" value="split">/</button>
+
+            <button class="regular-numbers">7</button>
+            <button class="regular-numbers">8</button>
+            <button class="regular-numbers">9</button>
+            <button class="operators operators-css" value="multiply">*</button>
+
+            <button class="regular-numbers">4</button>
+            <button class="regular-numbers">5</button>
+            <button class="regular-numbers">6</button>
+            <button class="operators operators-css" value="subtract">-</button>
+
+            <button class="regular-numbers">1</button>
+            <button class="regular-numbers">2</button>
+            <button class="regular-numbers">3</button>
+            <button class="operators operators-css" value="add">+</button>
+
+            <button class="operators operators-css" onclick="display.toggleSign()">+/-</button>
+            <button class="regular-numbers">0</button>
+            <button class="regular-numbers">.</button>
+            <button class="operators operators-css" value="equal">=</button>
+        </div>
+
+    </main>
+    <script src="./Display.js"></script>
+    <script src="./calc.js"></script>
+    </body>
+    </html>
