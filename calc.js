@@ -4,9 +4,7 @@ const buttonsNumbers = document.querySelectorAll(".regular-numbers")
 const buttonsOperators = document.querySelectorAll(".operators")
 
 
-
-const maxLength = 10
-const display = new Display(displayResultValue, displayCurrentValue, maxLength)
+const display = new Display(displayResultValue, displayCurrentValue)
 
 buttonsNumbers.forEach(button => {
     button.addEventListener("click", () => display.addNumber(button.innerHTML));
