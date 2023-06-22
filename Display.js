@@ -16,6 +16,8 @@ class Calculator {
     }
 }
 
+let maxLength = 10;
+
 class Display {
     constructor(displayResultValue, displayCurrentValue) {
         this.displayResultValue = displayResultValue
@@ -24,7 +26,7 @@ class Display {
         this.typeOfOperation = undefined;
         this.resultValue = "";
         this.currentValue = "";
-        this.maxLength = maxLength
+        this.maxLength = maxLength;
         this.signs = {
             add: "+",
             subtract: "-",
@@ -64,7 +66,29 @@ class Display {
     }
 
     printValue() {
-        this.displayCurrentValue.textContent = this.currentValue;
+        let displayedValue = this.currentValue;
+
+        // VERIFICAR SI EL NÚMERO EXCEDE LA LONGITUD MÁXIMA
+        if (displayedValue.includes(".")) {
+        const parts = displayedValue.split(".");
+        let integerPart = parts[0];
+        let decimalPart = parts[1] || "";
+
+        // TRUNCAR LA PARTE ENTERA SI EXCEDE LA LONGITUD MÁXIMA
+        if (integerPart.length > this.maxLength) {
+            integerPart = integerPart.slice(0, this.maxLength);
+        }
+
+        // TRUNCAR LA PARTE DECIMAL SI EXCEDE LA LONGITUD MÁXIMA
+        if (decimalPart.length > this.maxLength - integerPart.length - 1) {
+            decimalPart = decimalPart.slice(0, this.maxLength - integerPart.length - 1);
+        }
+
+        displayedValue = `${integerPart}.${decimalPart}`;
+        } else if (displayedValue.length > this.maxLength) {
+        displayedValue = displayedValue.slice(0, this.maxLength);
+        }
+        this.displayCurrentValue.textContent = displayedValue;
         this.displayResultValue.textContent = `${this.resultValue} ${this.signs[this.typeOfOperation] || ""}`;
     }
 
@@ -80,7 +104,7 @@ class Display {
     compute(type) {
         this.typeOfOperation !== "equal" && this.calculate();
         this.typeOfOperation = type;
-        this.resultValue = this.currentValue || this.resultValue;
+        this.resultValue = this.currentValue.toString().slice(0, this.maxLength);
         this.currentValue = "";
         this.printValue();
     }
